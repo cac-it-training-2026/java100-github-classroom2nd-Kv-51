@@ -22,7 +22,7 @@ public class Detective {
 
 	public static void main(String[] args) {
 
-		int budget = 200;
+		int budget = 501; //200から500より大きい数字に書き換え
 
 		System.out.println("依頼主：");
 		System.out.println("宝石が見つかりましたら");
