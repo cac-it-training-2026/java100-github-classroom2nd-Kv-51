@@ -79,27 +79,45 @@ import java.io.InputStreamReader;
 
 public class Explorer {
 
-    public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException {
 
-        System.out.println("隊長：");
-        System.out.println("トラ発見！\n");
+		System.out.println("隊長：");
+		System.out.println("トラ発見！");
 
-        int deepSleepTime = (int) (Math.random() * 10 % 3) + 1;
-        int goTime = 0;
+		int deepSleepTime = (int) (Math.random() * 10 % 3) + 1; //トラが寝てる時間。1か2か3が出る
+		int goTime = 0; //通り抜ける時間
 
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
+		//ここにfor文、if文を利用した処理を記述
+		for (int i = 1; i < 4; i++) {
+			System.out.println("\n隊長：");
+			System.out.println(i + "時間経過。");
 
-        //ここにfor文、if文を利用した処理を記述
+			if (i != 3) { //iが3でないときは。
+				System.out.print("今通り抜けますか？（はい… 1 : いいえ… その他のキー）＞");
+				String answerStr = br.readLine();
+				int answer = Integer.parseInt(answerStr);
 
+				if (answer == 1) {
+					goTime = i; //通り抜ける時間に今の時間を代入する
+					break;
+					//forループを終わらせて下のifにジャンプする
+				}
+			} else { //iが3になったら。
+				System.out.println("もう後がないんで通り抜けますよ。");
+				goTime = i;
+				//iはこの時点で3なので、ここでforループが終わり下のifにジャンプする
+			}
+		}
 
-        if (deepSleepTime == goTime) {
-            System.out.println("\n隊長：");
-            System.out.println("成功！トラはぐっすり寝ています。");
-        } else {
-            System.out.println("\n隊長：");
-            System.out.println("しまったトラがまだ起きてた！");
-        }
+		if (deepSleepTime == goTime) { //トラが寝ている時間と通り抜ける時間が一致していれば。
+			System.out.println("\n隊長：");
+			System.out.println("成功！トラはぐっすり寝ています。");
+		} else {
+			System.out.println("\n隊長：");
+			System.out.println("しまったトラがまだ起きてた！");
+		}
 
-    }
+	}
 }

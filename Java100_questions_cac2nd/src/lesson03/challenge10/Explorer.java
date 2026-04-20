@@ -75,14 +75,31 @@ package lesson03.challenge10;
 
 public class Explorer {
 
-        public static void main(String[] args) {
+	public static void main(String[] args) {
 
-                System.out.println("隊長：");
-                System.out.println("滝の前に着いたよ！\n");
+		System.out.println("隊長：");
+		System.out.println("滝の前に着いたよ！\n");
 
+		//ここにfor文のネスト、if文を利用した処理を記述する。
+		for (int h = 13; h <= 16; h++) {
+			for (int m = 0; m < 60; m += 15) { //ループのたびminuteが15分ずつ加算される
+				if (h == 13 && m == 0) { //このifで開始時間13:30を設定している
+					m = 30;
+				} else { //13:30以外はすべてこのelseを実行する
+					System.out.println("\n隊長：");
+					System.out.printf("%d:%02d 待ち遠しいな～%n%n", h, m);
+					//ここのhとmは上で作ったfor文の変数
+				}
 
-                //ここにfor文のネスト、if文を利用した処理を記述する。
+				if (h == 16 && m == 30) { //上のifが実行された後、このifが評価される
+					System.out.println("\n隊長：");
+					System.out.printf("%d:%02d 時間になったよ%n%n", h, m);
+					System.out.println("滝の水流が弱くなりました。");
+					System.out.println("\nやったー！宝物だー！");
+					break; //forから抜ける
+				}
+			}
+		}
 
-
-        }
+	}
 }
