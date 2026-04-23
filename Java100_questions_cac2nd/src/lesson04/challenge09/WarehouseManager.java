@@ -83,9 +83,20 @@ public class WarehouseManager {
 
 		System.out.println("\n\nでした。直してきます...\n");
 
+		//MQArrayAの要素0の位置にMQArrayBの値を入れる処理を記述する
 
-		//for文のネストを利用してMQArrayAの要素0の位置にMQArrayBの値を入れる処理を記述する。
+		int index = 0; //A配列の値が0のインデックス用変数
 
+		for (int i = 0; i < 5; i++) {
+			if (MQArrayB[i] != 0) { //B[i]が0じゃないときは。
+				while (MQArrayA[index] != 0) { //A[index]が0じゃないときは。
+					index++; //この条件の時にindexに++することで0じゃないindexをスキップできる
+								//ifだと1回しかスキップしないのでwhileで0にあたるまでスキップループ
+				}
+				MQArrayA[index] = MQArrayB[i]; //空箱のA[index]に中身があるB[i]を代入
+				MQArrayB[i] = 0;
+			}
+		}
 
 		System.out.println("Yさん：");
 		System.out.println("直してきました。\n");
