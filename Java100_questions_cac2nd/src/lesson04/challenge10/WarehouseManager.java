@@ -116,7 +116,7 @@ public class WarehouseManager {
 
 		//ここに配列Dの要素をすべて出力する処理を記述する。
 		for (int i = 0; i < listD.length; i++) { //すべて出力
-			System.out.print(listC[i]);
+			System.out.print(listD[i]);
 			if (i < listD.length - 1) {
 				System.out.print(",");
 			}
