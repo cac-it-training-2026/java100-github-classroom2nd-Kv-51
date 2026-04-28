@@ -75,7 +75,7 @@ public class Explorer {
 
 		System.out.println("隊長：");
 		System.out.println("ワニ3匹発見！\n");
-		System.out.println("グーワニかチョキワニかパーワニのどれかです。\n");
+		System.out.println("グーワニかチョキワニかパーワニのどれかです。");
 
 		int alligator = 0;
 		int hand = 0;
@@ -83,15 +83,68 @@ public class Explorer {
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-
 		//ここにwhile文、if文を利用した処理を記述
+		while (i < 3) {
+			alligator = (int) (Math.random() * 10 % 3) + 1;
+			//ここで出た乱数の1＝グー、2＝チョキ、3＝パーということにする
+			//出力で無理やりそういうことにする
 
+			System.out.println("\n隊長：\nどの手を出して通り抜けますか");
+			System.out.print("（グー… 1 : チョキ… 2 : パー… 3）＞");
+			hand = Integer.parseInt(br.readLine());
 
-		if (i == 3) {
-			System.out.println("隊長：");
+			if (hand == 1) { //自分がグーなら
+
+				if (alligator == 1 || alligator == 2) { //そしてワニがグーまたはチョキなら
+					String waniHand = (alligator == 1 ? "グーワニ" : "チョキワニ"); //ワニがグーなら"グーワニ"、それ以外なら"チョキワニ"を代入
+					System.out.println("\n隊長：\n相手は" + waniHand + "でした");
+					System.out.println((i + 1) + "匹目通り抜け成功！");
+					//i++までジャンプしてi++処理してループに戻る
+				} else { //そしてワニがグーとチョキ以外＝パーなら
+					System.out.println("\n隊長：\n相手はパーワニでした。");
+					break; //i++せずにループから抜ける
+				}
+
+			} else if (hand == 2) { //自分がチョキなら
+
+				if (alligator == 2 || alligator == 3) {
+					String waniHand = (alligator == 2 ? "チョキワニ" : "パーワニ");
+					//ブロック内で作った変数waniHandは別のブロックで再利用できないので
+					//再度作成する。なお今回の場合は内容が変わるので再利用したらむしろおかしい
+					System.out.println("\n隊長：\n相手は" + waniHand + "でした");
+					System.out.println((i + 1) + "匹目通り抜け成功！");
+				} else {
+					System.out.println("\n隊長：\n相手はグーワニでした。");
+					break;
+				}
+
+			} else if (hand == 3) { //自分がパーなら
+
+				if (alligator == 3 || alligator == 1) {
+					String waniHand = (alligator == 3 ? "パーワニ" : "グーワニ");
+					System.out.println("\n隊長：\n相手は" + waniHand + "でした");
+					System.out.println((i + 1) + "匹目通り抜け成功！");
+				} else {
+					System.out.println("\n隊長：\n相手はチョキワニでした。");
+					break;
+				}
+
+			} else { //グーでもチョキでもパーでもない入力がされたら
+				System.out.println("\n隊長：\nそんな手はありませんよ。もう一度入力してください。");
+				i--; //breakするとループから抜けて下のifにジャンプしてしまう
+						//今回は入力に戻したいだけなのでbreakせず、かわりにカウントを減らす
+			}
+
+			i++;
+		}
+
+		if (i == 3)
+
+		{
+			System.out.println("\n隊長：");
 			System.out.println("川を渡り切りました。");
 		} else {
-			System.out.println("通り抜けに失敗しました...");
+			System.out.println("\n通り抜けに失敗しました...");
 		}
 
 	}

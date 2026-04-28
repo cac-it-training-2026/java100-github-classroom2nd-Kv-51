@@ -39,9 +39,30 @@ public class WarehouseManager {
 
 		int[] ABKosanArray = new int[5];
 
-
 		//ここに重複チェックおよび値の代入処理を記述する
 
+		int intputNum = 0;
+		boolean loopFlag = false;
+
+		for (int i = 0; i < ABKosanArray.length; i++) {
+
+			do {
+				loopFlag = false; //ここでfalseにし直さないと、下のifでtrueになったらその後無限ループになる
+				intputNum = (int) (Math.random() * 5) + 1;
+
+				for (int k = 0; k < i; k++) { //k<iにすることで既存の値をチェックできる
+												//既存の値のうち、新しいランダム数字と一致するもの＝重複がないか
+												//既存の値が入れられた回数分＝iだけループしてチェックする
+					if (ABKosanArray[k] == intputNum) { //重複があったら。
+						loopFlag = true;
+						break; //重複見つけた時点でforループから抜けてdo～whileに戻る
+					}
+				}
+
+			} while (loopFlag); //重複があったのでもっかい数字引き直しますよ～のループ条件
+
+			ABKosanArray[i] = intputNum;//重複が見つからなかったら、ここで初めてABK～[i]にランダム数字を入れる
+		}
 
 		System.out.println("E主任：");
 		System.out.println("AB興産の荷物の入れ替えをお願いします。\n");
@@ -57,9 +78,19 @@ public class WarehouseManager {
 		}
 		System.out.println("\nです。\n");
 
-
-		//ここに値の入れ替え処理を記述する
-
+		for (int i = 0; i < ABKosanArray.length; i++) {
+			if (ABKosanArray[i] == 1)
+				ABKosanArray[i] = 3;
+			else if (ABKosanArray[i] == 3)
+				ABKosanArray[i] = 1;
+			else if (ABKosanArray[i] == 2)
+				ABKosanArray[i] = 4;
+			else if (ABKosanArray[i] == 4)
+				ABKosanArray[i] = 2;
+		}
+		//入れ替えるのではなく、直接代入している
+		//forループが見ているのは“同じ1回の値”だけで、書き換え後に戻って見直す仕組みになっていない
+		//だからループ中に書き換えが起きてもその分は更新されない＝再判定されない
 
 		System.out.println("入れ替え後の状態は、");
 		for (int i = 0; i < ABKosanArray.length; i++) {

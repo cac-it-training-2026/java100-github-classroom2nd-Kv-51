@@ -61,12 +61,27 @@ public class Explorer {
 		System.out.println("隊長：");
 		System.out.println("吊り橋発見！\n");
 
-		int fullLength = 300;
-		int member = 0;
-
+		int fullLength = 300; //橋の終わりまでの距離
+		int member = 0; //渡る人
 
 		//ここにwhile文を利用した処理を記述
+		while (member < 5) {
 
+			if (fullLength == 300) { //残りの距離が300なら
+				System.out.println((member + 1) + "人目が渡り始めたよ\n");
+				fullLength -= 50;
+			} else if (fullLength > 0) { //残りの距離が0より大きいなら
+				System.out.println("隊長：\nまだ渡ってるよ\n");
+				fullLength -= 50;
+			} else { //残りの距離が0なら
+				member++;
+				fullLength = 300;
+				//fullLengthに距離を補充しないと2人目に行かずにループ処理が終わる
+			}
+
+			//if・else if・elseのいずれかが該当する限り、
+			//if・else if・elseのいずれかをmemberが5になるまでループする
+		}
 
 		System.out.println("全員渡り終わったよ！");
 

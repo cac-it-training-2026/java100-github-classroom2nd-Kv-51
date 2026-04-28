@@ -52,34 +52,41 @@ package lesson03.challenge09;
 
 public class Explorer {
 
-    public static void main(String[] args) {
+	public static void main(String[] args) {
 
-        System.out.println("隊長：");
-        System.out.println("間欠泉が10個あるよ気をつけて！\n");
+		System.out.println("隊長：");
+		System.out.println("間欠泉が10個あるよ気をつけて！\n");
 
-        int geyser = 0;
-        int damage = 0;
-        for (int i = 0; i < 10; i++) {
+		int geyser = 0;
+		int damage = 0;
+		for (int i = 0; i < 10; i++) {
 
-            geyser = (int) (Math.random() * 10 % 2);
+			geyser = (int) (Math.random() * 10 % 2);
+			//0または1を出す
+			//0＝セーフ、1＝熱湯ということにする
 
+			//ここにif文、continue文を利用した処理を記述
+			if (geyser == 0) {
+				System.out.println("隊長：");
+				System.out.println((i + 1) + "個目。セーフ");
+				System.out.println("ラッキー！");
+				continue; //forループの最初に戻ってカウントの続きをする
+			}
 
-            //ここにif文、continue文を利用した処理を記述
+			//gayserが0でなかった＝gayserが1だったら上のifは実行されず以下の処理に続く
+			damage++;
+			System.out.println("隊長：");
+			System.out.println((i + 1) + "個目。熱湯");
+			System.out.println("うわ熱っ！（ダメージ" + damage + "）\n");
 
-
-            damage++;
-            System.out.println("隊長：");
-            System.out.println((i + 1) + "個目。熱湯");
-            System.out.println("うわ熱っ！（ダメージ" + damage + "）\n");
-
-            if (damage == 6) {
-                break;
-            }
-        }
-        if (damage != 6) {
-            System.out.println("洞窟の出口にたどり着きました。");
-        } else {
-            System.out.println("探検隊は全滅しました。");
-        }
-    }
+			if (damage == 6) { //ダメージが6に達したらforループを抜けて下のifにジャンプしelseが実行される
+				break;
+			}
+		}
+		if (damage != 6) {
+			System.out.println("洞窟の出口にたどり着きました。");
+		} else {
+			System.out.println("探検隊は全滅しました。");
+		}
+	}
 }

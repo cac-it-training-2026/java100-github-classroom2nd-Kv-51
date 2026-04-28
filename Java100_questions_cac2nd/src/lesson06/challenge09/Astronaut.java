@@ -52,25 +52,50 @@ package lesson06.challenge09;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Random;
 
 //ここにAlphalianクラスを記述する
+class Alphalian {
+
+	public static String randomName() {
+		Random random = new Random();
+		char randomNames = (char) ('A' + random.nextInt(5)); //一旦char型でランダム排出する
+		return String.valueOf(randomNames); //Stringに戻してリターン
+	}
+}
 
 public class Astronaut {
 
-    public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException {
 
-        boolean hitFlag = false;
+		boolean hitFlag = false;
 
+		//ここに適切な処理を記述する。
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		int num = 1;
 
-        //ここに適切な処理を記述する。
+		for (int i = 0; i < 10; i++) { //今回のループは最大10回まで
+			System.out.print("名前を入れて下さい（A～E）＞");
+			String name = reader.readLine();
+			String rnName = Alphalian.randomName();
 
+			System.out.println("\na星人:" + (num++) + "人目");
 
-        if (hitFlag) {
-            System.out.println("当たったアルファ。α星にようこそアルファ。");
-        } else {
-            System.out.println("って言うか、お前やる気ないアルファ！");
-            System.out.println("とっとと出て行けアルファ！");
-        }
-    }
+			if (name.equals(rnName)) { //文字列と文字列の比較は～.equals(～) もし入力値nameとランダムrnNameが一致したら。
+				hitFlag = true; //下のifにジャンプできるように
+				break;
+			} else {
+				System.out.println("おら、そんな名前じゃないアルファ！");
+				System.out.println(rnName + "が正解だアルファ！\n");
+			}
+		}
+
+		if (hitFlag) {
+			System.out.println("当たったアルファ。α星にようこそアルファ。");
+		} else {
+			System.out.println("って言うか、お前やる気ないアルファ！");
+			System.out.println("とっとと出て行けアルファ！");
+		}
+	}
 
 }

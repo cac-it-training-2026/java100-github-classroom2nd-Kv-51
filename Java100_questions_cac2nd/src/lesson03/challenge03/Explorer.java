@@ -39,16 +39,17 @@ public class Explorer {
 		System.out.println("隊長：");
 		System.out.println("出発進行！\n");
 
-		int nauticalMile = 500;
-		int apsedTime = 0;
+		int nauticalMile = 500; //残りの距離
+		int apsedTime = 0; //経過時間
 
 		//ここにwhile文を記述する。
+		while (nauticalMile > 0) { //残りの距離が0になるまでは。
 
 			nauticalMile -= 22;
 			System.out.println("隊長：");
 			System.out.println((apsedTime += 1) + "時間たったよ\n");
 
-		//ここに  } を記述する。
+		} //ここに  } を記述する。
 
 		System.out.println("到着！");
 
